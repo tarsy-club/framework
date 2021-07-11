@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<files psalm-version="3.12.2@7c7ebd068f8acaba211d4a2c707c4ba90874fa26">
+  <file src="src/lib/Extension.php">
+    <MissingThrowsDocblock occurrences="3">
+      <code>throw new MetadataNotFoundException($this-&gt;getBundle() . ' metadata not found');</code>
+      <code>getParameter</code>
+      <code>throw new FileNotFoundException($this-&gt;getBundle() . ' resources not found');</code>
+    </MissingThrowsDocblock>
+  </file>
+  <file src="src/lib/FrontController.php">
+    <UnusedClass occurrences="1">
+      <code>FrontController</code>
+    </UnusedClass>
+  </file>
+  <file src="src/lib/Kernel.php">
+    <MissingThrowsDocblock occurrences="3">
+      <code>getContainerClass</code>
+      <code>throw new ClassNotFoundException($bundle . ' class not found');</code>
+      <code>loadFromExtension</code>
+    </MissingThrowsDocblock>
+    <UndefinedClass occurrences="1">
+      <code>new $bundle()</code>
+    </UndefinedClass>
+  </file>
+  <file src="src/lib/PrependExtension.php">
+    <UnusedClass occurrences="1">
+      <code>PrependExtension</code>
+    </UnusedClass>
+  </file>
+  <file src="vendor/symfony/framework-bundle/Kernel/MicroKernelTrait.php">
+    <MissingThrowsDocblock occurrences="2">
+      <code>load</code>
+      <code>configureRoutes</code>
+    </MissingThrowsDocblock>
+  </file>
+</files>

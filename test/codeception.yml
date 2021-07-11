@@ -1,0 +1,19 @@
+namespace: TarsyClub\Framework\Test
+shuffle: true
+report_useless_tests: false
+disallow_test_output: false
+paths:
+    tests: ./
+    output: _output
+    data: _data
+    support: _support
+    envs: _envs
+actor_suffix: Tester
+coverage:
+    enabled: '%CODECEPTION_COVERAGE_ENABLED%'
+    include:
+        - ../src/lib/*
+        - ../src/files/*
+extensions:
+    enabled:
+        - Codeception\Extension\RunFailed

@@ -1,0 +1,10 @@
+# file src/app_get_parameters.php
+<?php
+
+# namespace YOUR\PROJECT\NAMESPACE;
+
+function app_get_parameters() {
+    return [
+        \Symfony\Bundle\FrameworkBundle\FrameworkBundle::class => ['envs' => ['all' => true], 'routes' => true],
+    ];
+}

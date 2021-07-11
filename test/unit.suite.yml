@@ -1,0 +1,6 @@
+actor: UnitTester
+modules:
+    enabled:
+        - Asserts
+        - Filesystem
+        - \TarsyClub\Framework\Test\Helper\Unit

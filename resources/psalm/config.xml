@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<psalm
+    errorLevel="7"
+    resolveFromConfigFile="false"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="https://getpsalm.org/schema/config"
+    xsi:schemaLocation="https://getpsalm.org/schema/config"
+    errorBaseline="resources/psalm/baseline.xml"
+    cacheDirectory="var/psalm"
+    reportMixedIssues="true"
+    useDocblockPropertyTypes="true"
+    strictBinaryOperands="true"
+    addParamDefaultToDocblockType="true"
+    checkForThrowsDocblock="true"
+    findUnusedVariablesAndParams="true"
+    findUnusedCode="true"
+>
+    <projectFiles>
+        <directory name="src/lib" />
+    </projectFiles>
+    <issueHandlers>
+        <PossiblyUnusedMethod errorLevel="info" />
+    </issueHandlers>
+</psalm>

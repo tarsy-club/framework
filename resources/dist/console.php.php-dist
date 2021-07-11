@@ -1,0 +1,27 @@
+# file src/console.php
+#!/usr/bin/env php
+<?php
+
+# namespace YOUR\PROJECT\NAMESPACE;
+
+use Exception;
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+$realRootDir = (static function (string $default): string {
+    return ($pharRoot = \Phar::running()) ? $pharRoot : $default;
+})(__DIR__ . '/..');
+
+try {
+    $exitCode = app_get_front_controller(
+        basename(__FILE__),
+        app_get_parameters(),
+        $realRootDir . '/.env',
+        false
+    );
+    if (defined('STDIN')) {
+        exit($exitCode);
+    }
+} catch (Exception $e) {
+    // empty
+}

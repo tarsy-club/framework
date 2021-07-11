@@ -1,0 +1,6 @@
+parameters:
+    name: value
+    flag: true
+    array:
+        key: value
+        value: value

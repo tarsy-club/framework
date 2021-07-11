@@ -1,0 +1,22 @@
+{
+  "banner": false,
+  "chmod": "0750",
+  "compression": "NONE",
+  "directories": [
+    "resources/kernel",
+    "var/cache",
+    "vendor",
+    "src",
+    "test"
+  ],
+  "exclude-dev-files": false,
+  "finder": [
+    {
+      "ignoreDotFiles": false,
+      "in": ".",
+      "name": ".env"
+    }
+  ],
+  "main": "src/console.php",
+  "output": "module-debug.phar"
+}

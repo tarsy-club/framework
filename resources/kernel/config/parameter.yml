@@ -1,0 +1,6 @@
+parameters:
+    framework_profiler_only_exceptions: false
+    framework_router_strict_requirements: '%kernel.debug%'
+    framework_profiler_enabled: '%kernel.debug%'
+    container.autowiring.strict_mode: true
+    container.dumper.inline_class_loader: true

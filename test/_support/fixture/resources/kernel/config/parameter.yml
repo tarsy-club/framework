@@ -1,0 +1,2 @@
+parameters:
+    framework_profiler_enabled: '%kernel.debug%'

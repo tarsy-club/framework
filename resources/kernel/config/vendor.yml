@@ -1,0 +1,23 @@
+framework:
+    secrets:
+        enabled: false
+    session:
+        enabled: false
+    translator:
+        enabled: false
+    csrf_protection:
+        enabled: false
+    form:
+        enabled: false
+    fragments:
+        enabled: false
+    annotations:
+        enabled: false
+    validation:
+        enabled: false
+    router:
+        enabled: false
+    templating:
+        enabled: false
+    php_errors:
+        log: true

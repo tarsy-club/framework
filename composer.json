@@ -1,0 +1,141 @@
+{
+    "autoload": {
+        "files": [
+            "src/files/app_get_front_controller.php",
+            "src/files/front_controller.php"
+        ],
+        "psr-4": {
+            "TarsyClub\\Framework\\": "src/lib"
+        }
+    },
+    "autoload-dev": {
+        "files": [
+            "src/files/parameters.php",
+            "test/_support/UnitTester.php"
+        ],
+        "psr-4": {
+            "TarsyClub\\Framework\\Test\\Helper\\": "test/_support/Helper",
+            "TarsyClub\\Framework\\Test\\Unit\\": "test/unit",
+            "TarsyClub\\Framework\\Test\\_generated\\": "test/_support/_generated"
+        }
+    },
+    "config": {
+        "apcu-autoloader": true,
+        "cache-files-ttl": 7776000,
+        "discard-changes": true,
+        "optimize-autoloader": true,
+        "preferred-install": "dist"
+    },
+    "description": "tarsy-club framework",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.x-dev"
+        },
+        "hooks": {
+            "pre-commit": "composer run git:pre-commit"
+        },
+        "scripts-dev": {
+            "_json:fix": "json-cs-fix.sh",
+            "_post:update:cmd": [
+                "@git:update-hooks",
+                "ln -sf ${PWD}/vendor/bin/psalm.phar ${PWD}/vendor/bin/psalm"
+            ],
+            "cache:clear": "@console c:c",
+            "cache:warmup": "@console cache:warmup",
+            "codecept": "codecept -c test/codeception.yml",
+            "codecept:build": "@codecept build",
+            "codecept:run": "@codecept run --no-rebuild --coverage-html --no-colors --html unit-report.html",
+            "codecept:unit": "@codecept:run unit",
+            "cs:check": [
+                "composer fix -d vendor/tarsy-club/php-cs-fix -- --cache-file=${PWD}/var/phpcs/.php_cs.cache ${PWD}/src --dry-run",
+                "composer fix -d vendor/tarsy-club/php-cs-fix -- --cache-file=${PWD}/var/phpcs/.php_cs.cache ${PWD}/test --dry-run"
+            ],
+            "cs:fix": [
+                "composer fix -d vendor/tarsy-club/php-cs-fix -- --cache-file=${PWD}/var/phpcs/.php_cs.cache ${PWD}/src",
+                "composer fix -d vendor/tarsy-club/php-cs-fix -- --cache-file=${PWD}/var/phpcs/.php_cs.cache ${PWD}/test"
+            ],
+            "dev:test:composer": [
+                "@_composer:update:min nothing --lock",
+                "@_composer:strict"
+            ],
+            "fix": [
+                "@cs:fix",
+                "@json:fix"
+            ],
+            "git:add": "git add .",
+            "git:pre-commit": [
+                "@lint",
+                "@test",
+                "@test:platform",
+                "@fix",
+                "@git:add"
+            ],
+            "git:update-hooks": [
+                "cghooks add -f --lock-dir=${PWD}/var/cghooks",
+                "cghooks update --lock-dir=${PWD}/var/cghooks"
+            ],
+            "json:fix": [
+                "@_json:fix",
+                "@_json:fix module-debug.json"
+            ],
+            "lint": [
+                "parallel-lint -e php --no-progress --no-colors --blame ./src",
+                "parallel-lint -e php --no-progress --no-colors --blame ./test"
+            ],
+            "module-debug:compile": [
+                "@module:warmup",
+                "phar-box compile -n -c module-debug.json",
+                "mv module-debug.phar box/"
+            ],
+            "module:warmup": [
+                "@_composer:install",
+                "@cache:warmup"
+            ],
+            "post-install-cmd": "@_post:update:cmd",
+            "post-update-cmd": "@_post:update:cmd",
+            "psalm:create": "@psalm:runner --set-baseline=resources/psalm/baseline.xml",
+            "psalm:run": "@psalm:runner",
+            "psalm:runner": "psalm --config=resources/psalm/config.xml --no-progress -m",
+            "psalm:update": "@psalm:runner --update-baseline",
+            "test:platform": "composer check-platform-reqs --no-interaction --no-plugins",
+            "test:unit": [
+                "@codecept:build",
+                "@codecept:unit"
+            ]
+        }
+    },
+    "license": [
+        "proprietary"
+    ],
+    "name": "tarsy-club/framework",
+    "require": {
+        "php": "^7.1 || ^8.0",
+        "symfony/framework-bundle": "^4.0 || ^5.0",
+        "symfony/yaml": "^4.0 || ^5.0"
+    },
+    "require-dev": {
+        "brainmaestro/composer-git-hooks": "^2.8",
+        "codeception/codeception": "^3.0",
+        "ext-apcu": "^5.1",
+        "ext-zlib": "^7.1",
+        "neronmoon/scriptsdev": "*",
+        "php-parallel-lint/php-parallel-lint": "^1.0",
+        "psalm/phar": "^3.12",
+        "symfony/console": "^4.0 || ^5.0",
+        "symfony/dotenv": "^4.0 || ^5.0",
+        "tarsy-club/json-cs-fix": "^1.0",
+        "tarsy-club/php-cs-fix": "^1.0"
+    },
+    "scripts": {
+        "_composer:install": "composer install --no-interaction --no-suggest",
+        "_composer:strict": "composer validate --no-interaction --no-plugins --strict --no-check-all --no-check-publish",
+        "_composer:update": "composer update --no-interaction --no-plugins --no-suggest --no-scripts",
+        "_composer:update:min": "@_composer:update --no-autoloader --ignore-platform-reqs --no-progress",
+        "console": "src/console.php",
+        "test:composer": {
+            "lock": "@_composer:update:min nothing --lock --no-dev",
+            "strict": "@_composer:strict"
+        }
+    },
+    "type": "library"
+}
